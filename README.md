@@ -1,11 +1,11 @@
-# Knowunity Project
-## AI-Powered Educational Rap Video Generation Pipeline
+# AI-Powered Educational Rap Video Generation Pipeline
 
 ![Python](https://img.shields.io/badge/Python-3.10-blue)
 ![Platform](https://img.shields.io/badge/Platform-Modal-brightgreen)
 ![GPU](https://img.shields.io/badge/GPU-NVIDIA%20H100-76B900)
 
 **Demo:** [Instagram Post](https://www.instagram.com/know.unity.testbot/)
+
 **Hackathon:** [Hackathon: AI in Consumer](https://luma.com/knowunity-hack?tk=hN45Uu)
 
 Knowunity Project is an automated pipeline that turns an educational topic into a short-form rap video for platforms such as Instagram Reels and TikTok. The system combines lyric generation, voice synthesis, music generation, talking head video synthesis, subtitle alignment, and final video rendering into one workflow.
