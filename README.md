@@ -5,7 +5,7 @@
 ![GPU](https://img.shields.io/badge/GPU-NVIDIA%20H100-76B900)
 
 
-- Automated pipeline that turns an educational topic into a short-form rap video for platforms such as Instagram Reels and TikTok. The system combines lyric generation, voice synthesis, music generation, talking head video synthesis, subtitle alignment, and final video rendering into one workflow.
+Automated pipeline that turns an educational topic into a short-form rap video for platforms such as Instagram Reels and TikTok. The system combines lyric generation, voice synthesis, music generation, talking head video synthesis, subtitle alignment, and final video rendering into one workflow.
 
 - **Demo:** [Instagram Post](https://www.instagram.com/know.unity.testbot/)
 
