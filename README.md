@@ -95,10 +95,7 @@ This project integrates several tools and models:
 ## Model and Infrastructure
 
 ### Talking Head Generation
-This project uses the model from the ICLR 2024 Spotlight paper:
-
-**Real3D-Portrait: One-shot Realistic 3D Talking Portrait Synthesis**  
-[Paper Link](https://arxiv.org/abs/2401.08503)
+This project uses the model from the ICLR 2024 Spotlight paper: **Real3D-Portrait: One-shot Realistic 3D Talking Portrait Synthesis**  [Paper Link](https://arxiv.org/abs/2401.08503)
 
 ### Cloud Compute
 The main inference workflow runs on **Modal**, which allows the pipeline to use containerized GPU environments on demand.
