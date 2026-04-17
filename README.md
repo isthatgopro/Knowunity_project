@@ -1,140 +1,222 @@
-#Bar Keepers
-- AI-Powered Educational Raps: An Automated Video Generation Pipeline
+# Knowunity Project
+## AI-Powered Educational Rap Video Generation Pipeline
 
 ![Python](https://img.shields.io/badge/Python-3.10-blue)
 ![Platform](https://img.shields.io/badge/Platform-Modal-brightgreen)
 ![GPU](https://img.shields.io/badge/GPU-NVIDIA%20H100-76B900)
 
+**Demo:** [Instagram Post](https://www.instagram.com/know.unity.testbot/)
+**Hackathon:** [Hackathon: AI in Consumer](https://luma.com/knowunity-hack?tk=hN45Uu)
 
-### Final - [Instagram Post](https://www.instagram.com/know.unity.testbot/)
+Knowunity Project is an automated pipeline that turns an educational topic into a short-form rap video for platforms such as Instagram Reels and TikTok. The system combines lyric generation, voice synthesis, music generation, talking head video synthesis, subtitle alignment, and final video rendering into one workflow.
 
+The goal: make knowledge content more engaging, memorable, and easier to consume through short, entertaining videos.
 
 ---
-This project is an automated pipeline that transforms any educational topic into a short, engaging music video featuring a talking head avatar, dynamic subtitles, and AI-generated music. The final output is designed for short-form video platforms like TikTok and Instagram to make learning fun and memorable.
 
-The entire pipeline is built to run on **[Modal](https://modal.com/)**, leveraging the power of a single **NVIDIA H100 GPU** to accelerate the most demanding AI tasks, from 3D head generation to audio transcription[1][3][5][7].
+## Overview
 
-## The Concept
+This project explores how multimodal AI can be used to generate educational media automatically. Given a topic and an instructor persona, the pipeline produces:
 
-The core idea is to fuse education with entertainment. Instead of dry text, users learn through a catchy rap song, with the key information reinforced through a visually engaging video format.
+1. AI-generated educational rap lyrics
+2. synthesized vocal audio
+3. generated background music
+4. a talking head video with lip-synced animation
+5. word-level animated subtitles
+6. a final edited short-form video
+
+The heavy compute parts of the pipeline are designed to run on **Modal**, using GPU-backed infrastructure for model inference and video generation.
+
+---
+
+## Demo
+
+You can view a sample output here: [Instagram Demo](https://www.instagram.com/know.unity.testbot/)
+
+You can also include project visuals in this repository:
 
 ![Project Idea Diagram](./idea.png)
-
-## The Automated Workflow
-
-The project consists of several automated stages that work together to produce the final video:
-
 ![Project Workflow Diagram](./workflow.png)
 
-1.  **Lyric Generation:** An LLM creates educational rap lyrics about a user-provided topic.
-2.  **Voice Synthesis:** The lyrics are converted into a high-quality, rap-style voice using **ElevenLabs**.
-3.  **Music Generation:** A background beat is generated to match the rhythm and style of the vocals.
-4.  **Talking Head Synthesis:** The core of the project. Using the **Real3D-Portrait** model, a realistic 3D talking head is generated, with lip movements perfectly synced to the rap audio[4].
-5.  **Word-by-Word Subtitles:** The audio is transcribed using **`whisper-timestamped`** to get precise timings for every word. These are then rendered onto the video as a "karaoke-style" animation.
+---
 
-## Tech Stack & Key Components
+## ⭐ My Contributions
 
-This project integrates several cutting-edge AI models and tools:
+This repository was developed as a team project. My main contributions focused on the Python pipeline and inference workflow.
 
-*   **3D Talking Head Generation:** Based on the ICLR 2024 Spotlight paper **[Real3D-Portrait: One-shot Realistic 3D Talking Portrait Synthesis](https://arxiv.org/abs/2401.08503)**.
-*   **Cloud Compute & Infrastructure:** All heavy computation is offloaded to **[Modal](https://modal.com/)**, running containerized environments on demand. The most intensive tasks leverage the speed of an **NVIDIA H100 80GB GPU** for fast processing.
-*   **Audio Transcription:** **`whisper-timestamped`** is used to obtain precise word-level start and end times for dynamic subtitle animation.
-*   **Video & Audio Processing:** **FFmpeg** and **MoviePy** are used for pre-processing input data and rendering the final subtitled video.
-*   **Containerization:** The entire complex software environment, including specific versions of PyTorch, CUDA, and system libraries, is defined in a **Dockerfile** to ensure reproducibility[1].
+My work included:
 
-## Project Structure
+1. building and maintaining core Python scripts for the generation pipeline
+2. integrating **Modal** for remote GPU inference
+3. adapting and running inference based on **Real3D-Portrait**
+4. connecting the steps across lyrics, audio, talking head generation, subtitles, and final rendering
+5. helping structure the end-to-end workflow so the system could produce short educational rap videos from prompts
 
-The repository is organized into a clean and scalable structure:
+---
 
-```
+## Pipeline
+
+The workflow consists of several stages:
+
+### 1. Lyric Generation
+An LLM generates short, catchy educational rap lyrics from a user-provided topic.
+
+### 2. Voice Synthesis
+The lyrics are converted into vocal audio using a text-to-speech system.
+
+### 3. Music Generation
+A background beat is generated to match the style and pacing of the vocals.
+
+### 4. Talking Head Synthesis
+A talking portrait video is generated using **Real3D-Portrait**, with lip movements synchronized to the generated audio.
+
+### 5. Subtitle Alignment
+The audio is transcribed with **whisper-timestamped** to obtain word-level timestamps for subtitle animation.
+
+### 6. Final Rendering
+The final short-form video is rendered with subtitles, audio, and generated visuals using video processing tools.
+
+---
+
+## Tech Stack
+
+This project integrates several tools and models:
+
+- **Python**
+- **Modal** for remote GPU inference
+- **Real3D-Portrait** for talking head generation
+- **whisper-timestamped** for word-level subtitle timing
+- **FFmpeg** for media processing
+- **MoviePy** for video assembly and rendering
+- **Docker** for reproducible environment setup
+
+---
+
+## Model and Infrastructure
+
+### Talking Head Generation
+This project uses the model from the ICLR 2024 Spotlight paper:
+
+**Real3D-Portrait: One-shot Realistic 3D Talking Portrait Synthesis**  
+[Paper Link](https://arxiv.org/abs/2401.08503)
+
+### Cloud Compute
+The main inference workflow runs on **Modal**, which allows the pipeline to use containerized GPU environments on demand.
+
+### Reproducibility
+A **Dockerfile** is included to make the software environment more reproducible across systems.
+
+---
+
+## Repository Structure
+
+```text
 Knowunity_project/
 ├── .gitignore
 ├── Dockerfile
 ├── README.md
 ├── data/
-│ ├── raw/
-│ └── processed/
+│   ├── raw/
+│   └── processed/
 ├── docs/
 ├── notebooks/
 ├── output/
 └── src/
-├── helpers/
-├── add_subtitles_modal.py
-├── preprocess_data.py
-└── run_modal.py
+    ├── helpers/
+    ├── add_subtitles_modal.py
+    ├── preprocess_data.py
+    └── run_modal.py
 ```
 
 
+## Setup
+
+Clone your fork of the repository:
+```
+git clone https://github.com/isthatgopro/Knowunity_project.git
+cd Knowunity_project
+```
+
+Install Modal:
+```
+pip install modal
+```
+Authenticate Modal:
+```
+modal token new
+```
+Make sure your Modal account has the required secrets configured, such as a Hugging Face token if needed by the model pipeline.
+
 ## How to Run
 
-This project is designed to be run from your local machine, with all heavy lifting executed remotely on Modal.
+This project is designed so that local scripts orchestrate the workflow while the heavier inference steps run remotely on Modal.
 
-### 1. Setup
+### Step 1: Preprocess input data
 
-First, ensure you have Modal installed and configured:
+Prepare the input audio and video files:
+```
+python src/preprocess_data.py \
+  --input-dir data/raw \
+  --output-dir data/processed \
+  --audio-file your_audio.mp3 \
+  --video-file your_video.mp4
+```
+This step converts raw input files into formats suitable for downstream inference.
 
-Install the Modal client
-pip install modal
+### Step 2: Generate the talking head video
 
-Set up your Modal token (this will open a browser window)
-modal token new
+Run the main Modal pipeline:
+```
+python src/run_modal.py \
+  --src-img data/raw/your_source_image.png \
+  --drv-aud data/processed/your_audio_16khz.wav \
+  --drv-pose data/processed/your_video_512x512.mp4 \
+  --bg-img data/raw/your_background.png \
+  --out-name my_video.mp4
+```
+This step generates the main video output and saves it to output/.
 
-Clone this repository
-git clone https://github.com/Poyen-Chen/Knowunity_project.git
-cd Knowunity_project
+### Step 3: Add dynamic subtitles
 
-Make sure you have a Hugging Face secret named 'huggingface-secret' in your Modal account.
-You can create one on the Modal website with your Hugging Face token.
-text
+Generate word-level subtitles and render the final shareable video:
+```
+python src/add_subtitles_modal.py \
+  --input-video output/my_video.mp4 \
+  --output-video output/my_video_with_subs.mp4 \
+  --gpu T4 \
+  --model medium
+```
+The final output will be saved in the output/ directory.
 
-### 2. Usage Workflow
+## Example Use Case
 
-The process is broken down into three simple command-line steps. Run these commands from the **root directory** of the project (`Knowunity_project/`).
+A user provides:
+- a subject, such as a math concept
+- an instructor persona or character style
+- supporting media assets if needed
 
-**Step 1: Pre-process Your Data**
+The system then generates a short educational rap video that explains the topic through lyrics, audio, and a talking head presentation.
 
-Prepare your driving audio and video files. This script converts them to the formats required by the AI models. Place your raw files in the `data/raw/` folder first.
+## Limitations
 
-Example:
-python src/preprocess_data.py
---input-dir data/raw
---output-dir data/processed
---audio-file your_audio.mp3
---video-file your_video.mp4
+This project is currently a prototype and has several limitations:
 
-text
-The processed files will be saved in `data/processed/`.
+output quality depends on prompt quality and input assets
+subtitle timing and lip sync quality may vary
+generated media may still require manual review
+the workflow is built primarily for experimentation and demos rather than production deployment
+some steps depend on external APIs, model availability, or cloud setup
 
-**Step 2: Generate the Main Video**
+## What I Learned
 
-This command runs the core pipeline on Modal, using an H100 GPU to generate the talking head video. It uses your processed data as input.
+Through this project, I gained hands-on experience with:
 
-Example:
-python src/run_modal.py
---src-img data/raw/your_source_image.png
---drv-aud data/processed/your_audio_16khz.wav
---drv-pose data/processed/your_video_512x512.mp4
---bg-img data/raw/your_background.png
---out-name my_video.mp4
-
-text
-This will save the result to the `output/` folder.
-
-**Step 3: Add Dynamic Subtitles**
-
-This command takes the generated video, transcribes it, and burns in the word-by-word animated subtitles[1].
-
-Example:
-python src/add_subtitles_modal.py
---input-video output/my_video.mp4
---output-video output/my_video_with_subs.mp4
---gpu T4
---model medium
-
-text
-The final, shareable video will be saved in the `output/` folder.
-
-## Acknowledgements
-
--   This project's 3D talking head generation is powered by the incredible work from the authors of **Real3D-Portrait**.
--   Cloud infrastructure and GPU acceleration are provided by **Modal Labs**.
+building and debugging a multimodal generation pipeline
+orchestrating remote GPU inference with Modal
+integrating research models into a working application pipeline
+handling practical issues in audio, video, and subtitle processing
+designing a project that connects machine learning outputs to a user-facing demo
+Acknowledgements
+The talking head generation component is based on the work of the Real3D-Portrait authors
+Cloud GPU infrastructure was provided through Modal
+This repository reflects a collaborative team project, with my main contributions centered on Python pipeline development and inference integration
