@@ -35,8 +35,8 @@ You can view a sample output here: [Instagram Demo](https://www.instagram.com/kn
 
 You can also include project visuals in this repository:
 
-![Project Idea Diagram](./idea.png)
-![Project Workflow Diagram](./workflow.png)
+![Project Idea Diagram](./docs/images/idea.png)
+![Project Workflow Diagram](./docs/images/workflow.png)
 
 ---
 
@@ -107,24 +107,53 @@ A **Dockerfile** is included to make the software environment more reproducible 
 
 ## Repository Structure
 
-```text
+```
 Knowunity_project/
-├── .gitignore
 ├── Dockerfile
 ├── README.md
-├── data/
-│   ├── raw/
-│   └── processed/
+├── .gitignore
 ├── docs/
+│   └── images/
+│       ├── idea.png
+│       └── workflow.png
+├── data/
+│   ├── input/
+│   │   ├── audio/
+│   │   │   ├── examples/
+│   │   │   ├── reference/
+│   │   │   ├── rap_nomusic_66s.wav
+│   │   │   └── rap_with_music_66s.mp3
+│   │   ├── images/
+│   │   │   └── examples/
+│   │   └── video/
+│   │       ├── examples/
+│   │       └── kendrick14s.mp4
+│   ├── processed/
+│   │   ├── audio/
+│   │   │   └── rap_with_music_66s_16khz.wav
+│   │   └── video/
+│   │       └── kendrick14s_512x512.mp4
+│   └── sample_output/
 ├── notebooks/
+│   ├── add_subtitles.ipynb
+│   └── knowunity-project_Poyen.ipynb
 ├── output/
-└── src/
-    ├── helpers/
-    ├── add_subtitles_modal.py
-    ├── preprocess_data.py
-    └── run_modal.py
+│   ├── audio/
+│   ├── text/
+│   ├── subtitles/
+│   └── video/
+├── logs/
+├── src/
+│   ├── helpers/
+│   ├── add_subtitles_modal.py
+│   ├── generate_content.py
+│   ├── post_to_instagram.py
+│   ├── preprocess_data.py
+│   └── run_modal.py
+└── tests/
+    ├── test_repo_structure.py
+    └── test_readme.py
 ```
-
 
 ## Setup
 
@@ -147,6 +176,17 @@ Make sure your Modal account has the required secrets configured, such as a Hugg
 ## How to Run
 
 This project is designed so that local scripts orchestrate the workflow while the heavier inference steps run remotely on Modal.
+
+## Tests
+
+This repository includes lightweight checks for project structure and documentation.
+
+Run tests with:
+
+```
+pip install pytest
+pytest -q
+```
 
 ### Step 1: Preprocess input data
 

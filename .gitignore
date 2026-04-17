@@ -21,4 +21,7 @@ session.json
 # Data - Ignore large data files by default.
 # This prevents you from accidentally committing gigabytes of data.
 /data/processed/
-/data/raw/
+/data/raw/src/session.json
+*.log
+__pycache__/
+.DS_Store
