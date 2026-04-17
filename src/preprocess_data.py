@@ -67,7 +67,7 @@ if __name__ == "__main__":
     if not check_ffmpeg_installed():
         exit(1)
 
-    # [UPDATED] New command-line arguments for directories
+    # New command-line arguments for directories
     parser = argparse.ArgumentParser(description="Pre-process audio and video files for Real3DPortrait.")
     parser.add_argument("--input-dir", required=True, help="Directory containing the raw input files.")
     parser.add_argument("--output-dir", required=True, help="Directory where processed files will be saved.")

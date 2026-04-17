@@ -9,7 +9,7 @@ logger = logging.getLogger("subtitler")
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 
 # --- Define the Container Image ---
-# This reuses your existing Dockerfile and adds 'whisper-timestamped'.
+# Reuse Dockerfile and adds 'whisper-timestamped'.
 image = (
     modal.Image.from_dockerfile("./Dockerfile")
     .run_commands(
@@ -52,14 +52,12 @@ def _add_subtitles_remote(input_filename, output_filename, whisper_model_name):
                 word_text,
                 fontsize=48,
                 font='Arial-Bold',
-                # [THE FIX] Change the text color to yellow.
+                # Change the text color to yellow.
                 color='yellow',
                 stroke_color='black',
                 stroke_width=2
             )
             
-            # [THE FIX] Set the clip's position to the bottom of the screen.
-            # ('center', 0.85) means horizontally centered and 85% down from the top.
             word_clip = (
                 word_clip.set_start(start_time)
                 .set_duration(duration)
@@ -92,7 +90,6 @@ def _add_subtitles_remote(input_filename, output_filename, whisper_model_name):
 @app.local_entrypoint()
 def main():
     """This local entrypoint handles file uploads, function calls, and downloads."""
-    # This function's logic is correct and does not need to change.
     parser = argparse.ArgumentParser(description="Add word-by-word subtitles to a video using Whisper on Modal.")
     parser.add_argument("--input-video", required=True, help="Path to the local video file you want to subtitle.")
     parser.add_argument("--output-video", default="output_with_word_subs.mp4", help="Filename for the final subtitled video.")

@@ -9,7 +9,7 @@ from instagrapi.exceptions import ClientError, ChallengeRequired
 from instagrapi.mixins.challenge import ChallengeChoice
 
 # --- Configuration ---
-VIDEO_PATH = "kendrick_new_output3.mp4" # UPDATE THIS to your final video file
+VIDEO_PATH = "kendrick_new_output3.mp4"
 LYRICS_INPUT_FILE = "lyrics.txt"
 SESSION_FILE = "session.json"
 LOG_FILE = "poster.log"
@@ -35,7 +35,6 @@ def generate_caption_with_openai(lyrics: str, api_key: str) -> str:
     """Generates a trendy Instagram caption using OpenAI."""
     logging.info("Generating caption with OpenAI...")
     try:
-        # NOTE: This uses the modern OpenAI library syntax
         client = openai.OpenAI(api_key=api_key)
         prompt = f"""
         You are a chronically online Gen Z social media expert. Your task is to write a short, witty, "brainrot" style Instagram Reel caption for a math-themed rap song.

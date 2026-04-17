@@ -1,4 +1,3 @@
-# patch_torchshow.py
 import inspect
 import pathlib
 

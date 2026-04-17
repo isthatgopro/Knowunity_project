@@ -9,7 +9,7 @@ dist/
 .vscode/
 .idea/
 *.DS_Store
-.ipynb_checkpoints
+.ipynb_checkpoints/
 
 # Large output files and logs
 /output/

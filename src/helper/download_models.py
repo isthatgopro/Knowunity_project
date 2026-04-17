@@ -1,4 +1,3 @@
-# download_models.py
 import os
 import time
 from huggingface_hub import snapshot_download
@@ -17,7 +16,7 @@ def download():
     Downloads all specified models from Hugging Face, using an API token
     to avoid rate limits and a retry mechanism for transient errors.
     """
-    # [THE FIX] Get the token from the environment variable provided by the Modal Secret.
+    # Get the token from the environment variable provided by the Modal Secret.
     hf_token = os.getenv("HF_TOKEN")
     if not hf_token:
         print("Warning: Hugging Face token not found. Downloads may be rate-limited.")

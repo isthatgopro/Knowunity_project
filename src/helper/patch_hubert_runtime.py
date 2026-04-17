@@ -14,14 +14,13 @@ if not os.path.exists(file_to_patch):
 model_find = 'HubertModel.from_pretrained("facebook/hubert-large-ls960-ft")'
 model_replace = 'HubertModel.from_pretrained("/models/facebook/hubert-large-ls960-ft")'
 
-# [THE FIX] Add a second find/replace for the Wav2Vec2Processor
+# Add a second find/replace for the Wav2Vec2Processor
 processor_find = 'Wav2Vec2Processor.from_pretrained("facebook/hubert-large-ls960-ft")'
 processor_replace = 'Wav2Vec2Processor.from_pretrained("/models/facebook/hubert-large-ls960-ft")'
 
 try:
     with fileinput.FileInput(file_to_patch, inplace=True) as file:
         for line in file:
-            # Chain the replace() calls to handle both cases in one pass
             modified_line = line.replace(model_find, model_replace).replace(processor_find, processor_replace)
             print(modified_line, end="")
     print("--- Patching complete for both model and processor. ---")

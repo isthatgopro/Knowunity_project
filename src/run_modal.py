@@ -70,9 +70,8 @@ def main():
 
     image = (
         modal.Image.from_dockerfile("./Dockerfile")
-        # [THE FIX] Correct path to the patch script using 'helper' (singular).
         .add_local_file("src/helper/patch_hubert_runtime.py", remote_path="/root/patch_hubert_runtime.py")
-        # This mounts the entire project directory into the container.
+        # Mount the entire project directory into the container.
         .add_local_dir(".", remote_path="/project")
     )
 

@@ -6,7 +6,7 @@ import torch
 # Force PyTorch3D to compile with CUDA support, even if a GPU is not visible at build time.
 os.environ["FORCE_CUDA"] = "1"
 
-# [CORRECTED] Add the CUB_HOME to the include path for the compiler
+# Add the CUB_HOME to the include path for the compiler
 cub_home = os.environ.get("CUB_HOME", None)
 if cub_home is None:
     print("Warning: CUB_HOME is not set. Compilation might fail.")

@@ -38,7 +38,7 @@ RUN python3 -m pip install \
 RUN python3 -m pip install "huggingface_hub[hf_transfer]"
 ENV HF_HUB_ENABLE_HF_TRANSFER=1
 
-# --- [UPDATED] Run Custom Installation and Patching Scripts ---
+# --- Run Custom Installation and Patching Scripts ---
 COPY src/helper/patch_torchshow.py /tmp/patch_torchshow.py
 RUN python3 /tmp/patch_torchshow.py
 COPY src/helper/install_mmcv.py /tmp/install_mmcv.py
@@ -46,7 +46,7 @@ RUN python3 /tmp/install_mmcv.py
 COPY src/helper/install_pytorch3d.py /tmp/install_pytorch3d.py
 RUN python3 /tmp/install_pytorch3d.py
 
-# --- [UPDATED] Pre-bake Models ---
+# --- Pre-bake Models ---
 COPY src/helper/download_models.py /tmp/download_models.py
 RUN python3 /tmp/download_models.py
 
