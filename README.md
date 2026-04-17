@@ -1,4 +1,4 @@
-# Bar Keepers
+#Bar Keepers
 - AI-Powered Educational Raps: An Automated Video Generation Pipeline
 
 ![Python](https://img.shields.io/badge/Python-3.10-blue)
