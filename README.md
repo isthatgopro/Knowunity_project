@@ -8,7 +8,7 @@
 
 **Hackathon:** [Hackathon: AI in Consumer](https://luma.com/knowunity-hack?tk=hN45Uu)
 
-Knowunity Project is an automated pipeline that turns an educational topic into a short-form rap video for platforms such as Instagram Reels and TikTok. The system combines lyric generation, voice synthesis, music generation, talking head video synthesis, subtitle alignment, and final video rendering into one workflow.
+Automated pipeline that turns an educational topic into a short-form rap video for platforms such as Instagram Reels and TikTok. The system combines lyric generation, voice synthesis, music generation, talking head video synthesis, subtitle alignment, and final video rendering into one workflow.
 
 The goal: make knowledge content more engaging, memorable, and easier to consume through short, entertaining videos.
 
