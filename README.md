@@ -248,12 +248,13 @@ some steps depend on external APIs, model availability, or cloud setup
 
 Through this project, I gained hands-on experience with:
 
-building and debugging a multimodal generation pipeline
-orchestrating remote GPU inference with Modal
-integrating research models into a working application pipeline
-handling practical issues in audio, video, and subtitle processing
-designing a project that connects machine learning outputs to a user-facing demo
-Acknowledgements
-The talking head generation component is based on the work of the Real3D-Portrait authors
-Cloud GPU infrastructure was provided through Modal
-This repository reflects a collaborative team project, with my main contributions centered on Python pipeline development and inference integration
+- building and debugging a multimodal generation pipeline
+- orchestrating remote GPU inference with Modal
+- integrating research models into a working application pipeline
+- handling practical issues in audio, video, and subtitle processing
+- designing a project that connects machine learning outputs to a user-facing demo
+
+## Acknowledgements
+- The talking head generation component is based on the work of the Real3D-Portrait authors.
+- Cloud GPU infrastructure was provided through Modal
+- This repo reflects a collaborative team project, with my main contributions centered on Python pipeline development and inference integration
