@@ -1,0 +1,9 @@
+modal
+openai==0.28.1
+python-dotenv
+elevenlabs
+pytest
+moviepy==1.0.3
+imageio==2.31.1
+imageio-ffmpeg==0.4.8
+git+https://github.com/linto-ai/whisper-timestamped.git

@@ -2,7 +2,7 @@ import os
 import logging
 import openai
 from dotenv import load_dotenv
-from elevenlabs import ElevenLabs
+from elevenlabs.client import ElevenLabs
 
 # --- Configuration ---
 LYRICS_OUTPUT_FILE = "lyrics.txt"

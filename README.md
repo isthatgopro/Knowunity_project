@@ -4,14 +4,14 @@
 ![Platform](https://img.shields.io/badge/Platform-Modal-brightgreen)
 ![GPU](https://img.shields.io/badge/GPU-NVIDIA%20H100-76B900)
 
-
+## About
 Automated pipeline that turns an educational topic into a short-form rap video for platforms such as Instagram Reels and TikTok. The system combines lyric generation, voice synthesis, music generation, talking head video synthesis, subtitle alignment, and final video rendering into one workflow.
 
 - **Demo:** [Instagram Post](https://www.instagram.com/know.unity.testbot/)
 
 - **Hackathon:** [Hackathon: AI in Consumer](https://luma.com/knowunity-hack?tk=hN45Uu)
 
-- Goal: make knowledge content more engaging, memorable, and easier to consume through short, entertaining videos.
+Goal: make knowledge content more engaging, memorable, and easier to consume through short, entertaining videos.
 
 ---
 
@@ -178,6 +178,45 @@ Make sure your Modal account has the required secrets configured, such as a Hugg
 
 This project is designed so that local scripts orchestrate the workflow while the heavier inference steps run remotely on Modal.
 
+
+### Step 1: Preprocess input data
+
+Prepare the input audio and video files:
+```
+python src/preprocess_data.py \
+  --input-dir data/input \
+  --output-dir data/processed \
+  --audio-file your_audio.mp3 \
+  --video-file your_video.mp4
+
+```
+This step converts raw input files into formats suitable for downstream inference.
+
+### Step 2: Generate the talking head video
+
+Run the main Modal pipeline:
+```
+python src/run_modal.py \
+  --src-img data/input/images/your_source_image.png \
+  --drv-aud data/processed/audio/your_audio_16khz.wav \
+  --drv-pose data/processed/video/your_video_512x512.mp4 \
+  --bg-img data/input/images/your_background.png \
+  --out-name my_video.mp4
+```
+This step generates the main video output and saves it to output/.
+
+### Step 3: Add dynamic subtitles
+
+Generate word-level subtitles and render the final shareable video:
+```
+python src/add_subtitles_modal.py \
+  --input-video output/video/my_video.mp4 \
+  --output-video output/video/my_video_with_subs.mp4 \
+  --gpu H100 \
+  --model medium
+```
+The final output will be saved in the `output/` directory.
+
 ## Tests
 
 This repository includes lightweight checks for project structure and documentation.
@@ -188,43 +227,6 @@ Run tests with:
 pip install pytest
 pytest -q
 ```
-
-### Step 1: Preprocess input data
-
-Prepare the input audio and video files:
-```
-python src/preprocess_data.py \
-  --input-dir data/raw \
-  --output-dir data/processed \
-  --audio-file your_audio.mp3 \
-  --video-file your_video.mp4
-```
-This step converts raw input files into formats suitable for downstream inference.
-
-### Step 2: Generate the talking head video
-
-Run the main Modal pipeline:
-```
-python src/run_modal.py \
-  --src-img data/raw/your_source_image.png \
-  --drv-aud data/processed/your_audio_16khz.wav \
-  --drv-pose data/processed/your_video_512x512.mp4 \
-  --bg-img data/raw/your_background.png \
-  --out-name my_video.mp4
-```
-This step generates the main video output and saves it to output/.
-
-### Step 3: Add dynamic subtitles
-
-Generate word-level subtitles and render the final shareable video:
-```
-python src/add_subtitles_modal.py \
-  --input-video output/my_video.mp4 \
-  --output-video output/my_video_with_subs.mp4 \
-  --gpu T4 \
-  --model medium
-```
-The final output will be saved in the output/ directory.
 
 ## Example Use Case
 
@@ -239,11 +241,11 @@ The system then generates a short educational rap video that explains the topic 
 
 This project is currently a prototype and has several limitations:
 
-output quality depends on prompt quality and input assets
-subtitle timing and lip sync quality may vary
-generated media may still require manual review
-the workflow is built primarily for experimentation and demos rather than production deployment
-some steps depend on external APIs, model availability, or cloud setup
+- output quality depends on prompt quality and input assets
+- subtitle timing and lip sync quality may vary
+- generated media may still require manual review
+- the workflow is built primarily for experimentation and demos rather than production deployment
+- some steps depend on external APIs, model availability, or cloud setup
 
 ## What I Learned
 
